@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-frontend
+  labels:
+    app: nginx-frontend
+spec:
+  containers:
+    - name: nginx-frontend
+      image: microwebapps/nginx-frontend
+      ports:
+        - containerPort: 80
+      env:
+        - name: KUBERNETES_CLIENT_CERTIFICATE_DATA
+          value: $kubernetes_client_certificate
+        - name: KUBERNETES_CLIENT_KEY_DATA
+          value: $kubernetes_client_key
+        - name: KUBERNETES_NAMESPACE
+          value: $kubernetes_namespace
